@@ -3,36 +3,43 @@ import { motion } from 'framer-motion';
 import {type FC, useEffect, useState} from "react";
 
 interface DuckProps {
-    fly?: boolean;
     hit?: boolean;
+    onClick?: () => void;
 }
 
 const Duck: FC<DuckProps> = (props) => {
     const {
-        fly = true,
-        hit = false
+        hit,
+        onClick
     } = props;
 
-    const [wingUp, setWingUp] = useState(false);
+    const [fly, setFly] = useState(false);
 
     useEffect(() => {
-        if (!fly) return;
+        if(hit) return
 
         const interval = setInterval(() => {
-            setWingUp(prev => !prev);
+            setFly(prev => !prev);
         }, 300);
 
         return () => clearInterval(interval);
-    }, [fly]);
-
+    }, [hit]);
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width={246} height={64}>
+        <motion.svg
+            onClick={onClick}
+            xmlns="http://www.w3.org/2000/svg"
+            width={246}
+            height={64}
+            initial={{ opacity: 1}}
+            animate={{ opacity: hit ? 0 : 1 }}
+            transition={{ duration: hit ? 1 : 0.5 }}
+        >
             <g fill="none" fillRule="evenodd">
                 {/*Wings Down*/}
                 <motion.g
                     id="wings-down"
-                    animate={{ opacity: fly ? (wingUp ? 0 : 1) : 1 }}
+                    animate={{ opacity: hit ? 0 : fly ? 0 : 1 }}
                     transition={{ duration: 0.1 }}
                     transform="translate(10, 12)"
                     opacity={1}
@@ -106,7 +113,7 @@ const Duck: FC<DuckProps> = (props) => {
                 {/*Wings Up*/}
                 <motion.g
                     id="wings-up"
-                    animate={{ opacity: fly ? (wingUp ? 1 : 0) : 0 }}
+                    animate={{ opacity: hit ? 0 : fly ? 1 : 0 }}
                     transition={{ duration: 0.1 }}
                     transform="translate(-72, 0)"
                     opacity={1}
@@ -173,8 +180,9 @@ const Duck: FC<DuckProps> = (props) => {
                 {/*Hit duck*/}
                 <motion.g
                     id="hit-duck"
-                    animate={{ opacity: fly ? 0 : 1 }}
-                    transition={{ duration: 0.3 }}
+                    animate={{ opacity: hit ? 1 : 0 }}
+                    transition={{ duration: 0.1 }}
+                    transform="translate(-162, 0)"
                 >
                     <path
                         fill="#C9CBCD"
@@ -225,7 +233,7 @@ const Duck: FC<DuckProps> = (props) => {
                     <path fill="#BC2131" d="M201.048 31.307h-4.571v5.83h4.57z"/>
                 </motion.g>
             </g>
-        </svg>
+        </motion.svg>
     );
 }
 export default Duck;
