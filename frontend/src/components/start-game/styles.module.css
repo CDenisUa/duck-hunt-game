@@ -1,0 +1,26 @@
+.user-block .user-title {
+    margin: 0 0 5px 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.score-block {
+    display: flex;
+}
+
+.score-block .score {
+    margin-left: 10px;
+}
+
+.start-button {
+    display: flex;
+    justify-content: center;
+}
+
+.start-button button {
+    width: 100%
+}

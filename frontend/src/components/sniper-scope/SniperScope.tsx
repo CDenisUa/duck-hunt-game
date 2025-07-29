@@ -1,10 +1,11 @@
 // Core
-import { type FC, useLayoutEffect } from 'react';
+import {type FC, useLayoutEffect} from 'react';
 import { motion, useMotionValue } from 'framer-motion';
 // Styles
 import styles from './styles.module.css';
 
 const SniperScope: FC = () => {
+
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
@@ -21,15 +22,18 @@ const SniperScope: FC = () => {
     }, []);
 
     return (
-        <motion.div
-            className={styles['cursor']}
-            style={{
-                position: 'absolute',
-                pointerEvents: 'none',
-                left: x,
-                top: y,
-            }}
-        />
+        <>
+            <motion.div
+                className={styles['cursor']}
+                style={{
+                    position: 'absolute',
+                    pointerEvents: 'none',
+                    left: x,
+                    top: y,
+                }}
+            />
+        </>
+
     );
 };
 

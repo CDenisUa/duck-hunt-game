@@ -1,12 +1,20 @@
+// Core
+import {useState} from "react";
 // Styles
 import './App.css'
+// Store
+import {useGameStore} from "./store";
 // Components
 import Duck from './components/svg/duck/Duck';
-import {useState} from "react";
-import SniperScope from "./components/sniper-scope/SniperScope.tsx";
+import SniperScope from "./components/sniper-scope/SniperScope";
+import GameSound from "./components/game-sound/GameSound";
+import StartGame from "./components/start-game/StartGame.tsx";
+import { Popup } from "./components/ui";
 
 function App() {
+    const { isGameReady } = useGameStore();
     const [hit, setHit] = useState(false);
+
     return (
         <div>
             <Duck
@@ -14,6 +22,14 @@ function App() {
                 hit={hit}
             />
             <SniperScope/>
+            <GameSound />
+            {
+                !isGameReady &&
+                <Popup>
+                    <StartGame />
+                </Popup>
+            }
+
         </div>
     )
 }

@@ -1,24 +1,13 @@
-// store/gameStore.ts
+// Core
 import { create } from 'zustand';
+// Types
+import type { GameState } from "../types/gameStore.types";
 
-type GameState = {
-    rounds: number
-    hits: number
-    isDuckFlying: boolean
-    duckId: number
-    setDuckFlying: (isFlying: boolean) => void
-    incrementRound: () => void
-    incrementHit: () => void
-    setDuckId: (id: number) => void
-}
+const useGameStore = create<GameState>((set, get) => ({
+    isGameReady: false,
+    difficultyLevel: 'Easy',
 
-export const useGameStore = create<GameState>((set) => ({
-    rounds: 0,
-    hits: 0,
-    isDuckFlying: false,
-    duckId: 0,
-    setDuckFlying: (isFlying) => set({ isDuckFlying: isFlying }),
-    incrementRound: () => set((state) => ({ rounds: state.rounds + 1 })),
-    incrementHit: () => set((state) => ({ hits: state.hits + 1 })),
-    setDuckId: (id) => set({ duckId: id }),
-}));
+    setDifficultyLevel: (difficultyLevel) => set({ difficultyLevel }),
+    setIsGameReady: () => set({ isGameReady: !get().isGameReady }),}));
+
+export default useGameStore;
