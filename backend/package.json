@@ -1,0 +1,33 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "imports": {
+    "#root/*": "./*",
+    "#src/*": "./src/*",
+    "#lib/*": "./src/lib/*",
+    "#middleware/*": "./src/middleware/*",
+    "#routes/*": "./src/routes/*",
+    "#models/*": "./src/models/*",
+    "#controllers/*": "./src/controllers/*"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
