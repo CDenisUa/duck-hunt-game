@@ -1,0 +1,7 @@
+.cursor {
+    width: 128px;
+    height: 128px;
+    background-image: url("/images/sniper.png");
+    position: absolute;
+    transform: translate(-62px, -62px);
+}
