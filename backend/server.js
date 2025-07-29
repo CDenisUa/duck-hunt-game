@@ -17,11 +17,6 @@ app.use(cors({
     credentials: true,
 }))
 
-app.get('/', (req, res) => {
-    res.status(200).json({
-        data: 'hello world'
-    })
-})
 
 app.listen(5200, () => {
     console.log(`Listening on port ${PORT}`);
