@@ -1,12 +1,13 @@
 // Core
 import { type FC, useEffect, useRef, useState } from 'react';
 // Sounds
-import shotSound from '../../../public/sounds/awp.mp3';
-import quackSound from '../../../public/sounds/quack.mp3';
+import shotSound from '/sounds/awp.mp3';
+import quackSound from '/sounds/quack.mp3';
 
 const GameSound: FC = () => {
     const shotRef = useRef<HTMLAudioElement | null>(null);
     const quackRef = useRef<HTMLAudioElement | null>(null);
+
     const [isDuckVisible, setIsDuckVisible] = useState(true);
     const [isSoundInitialized, setIsSoundInitialized] = useState(false);
 

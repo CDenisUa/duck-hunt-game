@@ -9,7 +9,6 @@ const InfoPanel: FC = () => {
     const { round } = useGameStore();
     const { name, score, difficultyLevel } = useUserStore();
 
-    console.log('difficultyLevel', difficultyLevel)
     return (
         <div className={styles['info-block']}>
             <p>Name: {name} </p>

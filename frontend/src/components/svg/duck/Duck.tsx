@@ -28,7 +28,7 @@ const Duck: FC<DuckPropTypes> = (props) => {
             xmlns="http://www.w3.org/2000/svg"
             width={246}
             height={64}
-            initial={{ opacity: 1}}
+            initial={{ opacity: 1 }}
             animate={{ opacity: isHit ? 0 : 1 }}
             transition={{ duration: isHit ? 1 : 0.5 }}
         >
@@ -39,7 +39,6 @@ const Duck: FC<DuckPropTypes> = (props) => {
                     animate={{ opacity: isHit ? 0 : fly ? 0 : 1 }}
                     transition={{ duration: 0.1 }}
                     transform="translate(10, 12)"
-                    opacity={1}
                 >
                     <path fill="#E26D02" d="M72.12 15.44H86v4.517H72.12z"/>
                     <path
@@ -113,7 +112,6 @@ const Duck: FC<DuckPropTypes> = (props) => {
                     animate={{ opacity: isHit ? 0 : fly ? 1 : 0 }}
                     transition={{ duration: 0.1 }}
                     transform="translate(-72, 0)"
-                    opacity={1}
                 >
                     <path fill="#C9CBCD" d="M120.895 53.784H108.07v-3.005h12.825z"/>
                     <path fill="#E26D02" d="M158.772 28.244H171v4.507h-12.228z"/>
