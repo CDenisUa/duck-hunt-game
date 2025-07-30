@@ -1,0 +1,12 @@
+.info-block {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #e6b4b4;
+    font-size: 24px;
+}
+
+.info-block p {
+    padding: 0;
+    margin: 0;
+}

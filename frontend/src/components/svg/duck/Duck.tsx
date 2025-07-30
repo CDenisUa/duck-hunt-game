@@ -1,13 +1,10 @@
 // Core
 import { motion } from 'framer-motion';
 import {type FC, useEffect, useState} from "react";
+// Types
+import type {DuckPropTypes} from "./Duck.types.ts";
 
-interface DuckProps {
-    hit?: boolean;
-    onClick?: () => void;
-}
-
-const Duck: FC<DuckProps> = (props) => {
+const Duck: FC<DuckPropTypes> = (props) => {
     const {
         hit,
         onClick

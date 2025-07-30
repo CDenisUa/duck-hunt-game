@@ -8,8 +8,8 @@ import { useGameStore, useUserStore } from "../../store";
 import { Button } from "../ui";
 
 const StartGame: FC = () => {
-    const { setDifficultyLevel, difficultyLevel, setIsGameReady} = useGameStore();
-    const { setUserName } = useUserStore();
+    const { setIsGameReady} = useGameStore();
+    const { setUserName, setDifficultyLevel, difficultyLevel } = useUserStore();
     const [name, setName] = useState('');
 
     const levelOfDifficult: Array<'Easy' | 'Medium' | 'Hard'> = ['Easy', 'Medium', 'Hard'];
@@ -25,11 +25,6 @@ const StartGame: FC = () => {
         setUserName(name);
         setDifficultyLevel(difficultyLevel);
         setIsGameReady();
-        console.log('Starting game with:');
-        console.log('User:', name);
-        console.log('Difficulty:', difficultyLevel);
-
-
     }
 
     return (
@@ -37,6 +32,7 @@ const StartGame: FC = () => {
             <div className={styles['user-block']}>
                 <p className={styles['user-title']}>User Name:</p>
                 <input
+                    className={styles['input']}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     name="name"
@@ -52,19 +48,22 @@ const StartGame: FC = () => {
             </div>
 
             <div className={styles['button-container']}>
-                {levelOfDifficult.map((level) => (
-                    <Button
-                        type='button'
-                        key={level}
-                        onClick={() => setDifficultyLevel(level)}
-                    >
-                        {level}
-                    </Button>
-                ))}
+                {
+                    levelOfDifficult.map((level) => (
+                        <Button
+                            type='button'
+                            style={{background: '#38a8f2'}}
+                            key={level}
+                            onClick={() => setDifficultyLevel(level)}
+                        >
+                            {level}
+                        </Button>)
+                    )
+                }
             </div>
 
             <div className={styles['start-button']}>
-                <Button type="submit">Start Game</Button>
+                <Button style={{background: '#71b800'}} type="submit">Start Game</Button>
             </div>
         </form>
     );
