@@ -3,11 +3,11 @@ import { type FC, useState, type FormEvent, useEffect, useRef } from 'react';
 // Styles
 import styles from './styles.module.css';
 // Types
-import { type UserStoreTypes } from '../../types/userStore.types'
+import { type UserStoreTypes } from '../../types/userStore.types';
 // Store
 import { useGameStore, useUserStore } from "../../store";
 // Utils
-import { getFullScreen } from "../../utils/getFullScreen.ts";
+import { getFullScreen } from "../../utils/getFullScreen";
 // Components
 import { Button } from "../ui";
 
@@ -38,7 +38,7 @@ const StartGame: FC = () => {
         setDifficultyLevel(difficultyLevel);
         setIsGameReady();
 
-        getFullScreen().catch(error => console.error(error))
+        getFullScreen().catch(error => console.error(error));
     };
 
     return (
@@ -60,9 +60,13 @@ const StartGame: FC = () => {
             <div className={styles['button-container']}>
                 {levelOfDifficult.map((level) => (
                     <Button
-                        type="button"
-                        style={{ background: '#38a8f2' }}
                         key={level}
+                        type="button"
+                        style={{
+                            background: difficultyLevel === level ? '#ffcc00' : '#38a8f2',
+                            color: difficultyLevel === level ? '#000' : '#fff',
+                            fontWeight: difficultyLevel === level ? 'bold' : 'normal',
+                        }}
                         onClick={() => setDifficultyLevel(level)}
                     >
                         {level}
