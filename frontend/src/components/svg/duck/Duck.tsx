@@ -6,37 +6,37 @@ import type {DuckPropTypes} from "./Duck.types.ts";
 
 const Duck: FC<DuckPropTypes> = (props) => {
     const {
-        hit,
-        onClick
+        isHit,
+        setIsHit
     } = props;
 
     const [fly, setFly] = useState(false);
 
     useEffect(() => {
-        if(hit) return
+        if(isHit) return
 
         const interval = setInterval(() => {
             setFly(prev => !prev);
         }, 300);
 
         return () => clearInterval(interval);
-    }, [hit]);
+    }, [isHit]);
 
     return (
         <motion.svg
-            onClick={onClick}
+            onClick={() => setIsHit(true)}
             xmlns="http://www.w3.org/2000/svg"
             width={246}
             height={64}
             initial={{ opacity: 1}}
-            animate={{ opacity: hit ? 0 : 1 }}
-            transition={{ duration: hit ? 1 : 0.5 }}
+            animate={{ opacity: isHit ? 0 : 1 }}
+            transition={{ duration: isHit ? 1 : 0.5 }}
         >
             <g fill="none" fillRule="evenodd">
                 {/*Wings Down*/}
                 <motion.g
                     id="wings-down"
-                    animate={{ opacity: hit ? 0 : fly ? 0 : 1 }}
+                    animate={{ opacity: isHit ? 0 : fly ? 0 : 1 }}
                     transition={{ duration: 0.1 }}
                     transform="translate(10, 12)"
                     opacity={1}
@@ -110,7 +110,7 @@ const Duck: FC<DuckPropTypes> = (props) => {
                 {/*Wings Up*/}
                 <motion.g
                     id="wings-up"
-                    animate={{ opacity: hit ? 0 : fly ? 1 : 0 }}
+                    animate={{ opacity: isHit ? 0 : fly ? 1 : 0 }}
                     transition={{ duration: 0.1 }}
                     transform="translate(-72, 0)"
                     opacity={1}
@@ -177,7 +177,7 @@ const Duck: FC<DuckPropTypes> = (props) => {
                 {/*Hit duck*/}
                 <motion.g
                     id="hit-duck"
-                    animate={{ opacity: hit ? 1 : 0 }}
+                    animate={{ opacity: isHit ? 1 : 0 }}
                     transition={{ duration: 0.1 }}
                     transform="translate(-162, 0)"
                 >

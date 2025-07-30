@@ -1,3 +1,4 @@
+// Core
 import { type FC, useEffect, useRef, useState } from 'react';
 // Sounds
 import shotSound from '../../../public/sounds/awp.mp3';

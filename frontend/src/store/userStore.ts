@@ -10,6 +10,7 @@ const useGameStore = create<UserStoreTypes>((set) => ({
         difficultyLevel: 'Easy',
 
         setUserName: (name: string) => set({ name }),
+        setScore: (value: number) => set({ score: value}),
         setDifficultyLevel: (difficultyLevel: UserStoreTypes["difficultyLevel"]) => set({ difficultyLevel }),
 }));
 
