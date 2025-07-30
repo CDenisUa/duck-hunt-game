@@ -17,6 +17,11 @@ function App() {
     const { setScore, score } = useUserStore();
     const ChaoticDuck = withChaoticFlight(Duck);
 
+    const handleHit = () => {
+        setScore(score + 1);
+        setIsHit(true);
+    }
+
     useRestart()
 
     return (
@@ -24,10 +29,7 @@ function App() {
             {isGameReady ? (
                 <>
                     <ChaoticDuck
-                        setIsHit={() => {
-                            setScore(score + 1);
-                            setIsHit(true);
-                        }}
+                        setIsHit={handleHit}
                         isHit={isHit}
                     />
                     <SniperScope />

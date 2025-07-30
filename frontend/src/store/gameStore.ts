@@ -8,6 +8,8 @@ const useGameStore = create<GameState>((set, get) => ({
     isHit: false,
     round: 0,
     isDuckSound: false,
+    hitPosition: null,
+    setHitPosition: (hitPosition) => set({ hitPosition }),
     setIsGameReady: () => set({ isGameReady: !get().isGameReady }),
     setIsHit: (value) => set({ isHit: value }),
     setRound: (value) => set({ round: value }),

@@ -1,5 +1,9 @@
+// Core
 import {useEffect} from "react";
+// Store
 import {useGameStore, useUserStore} from "../store";
+
+const DEFAULT_SPLASH_DURATION = 3000;
 
 export const useRestart = () => {
     const { setRound, round, isHit, setIsHit } = useGameStore();
@@ -13,7 +17,7 @@ export const useRestart = () => {
                     setScore(0);
                     setRound(round + 1);
                 }
-            }, 2000);
+            }, DEFAULT_SPLASH_DURATION);
 
             return () => clearTimeout(timeoutId);
         }
