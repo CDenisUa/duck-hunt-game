@@ -1,7 +1,3 @@
-// Core
-import {useState} from "react";
-// Styles
-import './App.css'
 // Store
 import {useGameStore} from "./store";
 // HOC
@@ -15,11 +11,9 @@ import InfoPanel from "./components/info-panel/InfoPanel";
 import { Popup } from "./components/ui";
 
 function App() {
-    const { isGameReady } = useGameStore();
+    const { isGameReady, isHit, setIsHit } = useGameStore();
 
     const ChaoticDuck = withChaoticFlight(Duck);
-
-    const [hit, setHit] = useState(false);
 
     return (
         <div>
@@ -27,8 +21,8 @@ function App() {
                 isGameReady &&
                 <>
                     <ChaoticDuck
-                        onClick={() => setHit(true)}
-                        hit={hit}
+                        onClick={() => setIsHit()}
+                        hit={isHit}
                     />
                     <SniperScope/>
                     <GameSound />

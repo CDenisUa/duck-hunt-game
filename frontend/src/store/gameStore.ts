@@ -5,7 +5,9 @@ import type { GameState } from "../types/gameStore.types";
 
 const useGameStore = create<GameState>((set, get) => ({
     isGameReady: false,
-    setIsGameReady: () => set({ isGameReady: !get().isGameReady }),})
+    isHit: false,
+    setIsGameReady: () => set({ isGameReady: !get().isGameReady }),
+    setIsHit: () => set({ isHit: !get().isHit })})
 );
 
 export default useGameStore;
