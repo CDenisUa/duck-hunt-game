@@ -1,5 +1,5 @@
 // Store
-import { useGameStore, useUserStore } from "./store";
+import {useGameStore, useSoundStore, useUserStore} from "./store";
 // HOC
 import { withChaoticFlight } from "./HOC/withChaoticFlight.tsx";
 // Hooks
@@ -15,32 +15,38 @@ import { Popup } from "./components/ui";
 function App() {
     const { isGameReady, isHit, setIsHit } = useGameStore();
     const { setScore, score } = useUserStore();
+    const { setDuckSound } = useSoundStore();
+
+
     const ChaoticDuck = withChaoticFlight(Duck);
 
     const handleHit = () => {
         setScore(score + 1);
         setIsHit(true);
+        setDuckSound(false)
     }
 
     useRestart()
 
     return (
         <div>
-            {isGameReady ? (
-                <>
-                    <ChaoticDuck
-                        setIsHit={handleHit}
-                        isHit={isHit}
-                    />
-                    <SniperScope />
-                    <GameSound />
-                    <InfoPanel />
-                </>
-            ) : (
-                <Popup>
-                    <StartGame />
-                </Popup>
-            )}
+            {
+                isGameReady
+                    ?
+                        <>
+                            <ChaoticDuck
+                                setIsHit={handleHit}
+                                isHit={isHit}
+                            />
+                            <SniperScope />
+                            <GameSound />
+                            <InfoPanel />
+                        </>
+                    :
+                        <Popup>
+                            <StartGame />
+                        </Popup>
+            }
         </div>
     );
 }

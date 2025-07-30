@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 // Types
 import { type UserStoreTypes } from '../../types/userStore.types';
 // Store
-import { useGameStore, useUserStore } from "../../store";
+import { useGameStore, useUserStore, useSoundStore } from "../../store";
 // Utils
 import { getFullScreen } from "../../utils/getFullScreen";
 // Components
@@ -14,6 +14,7 @@ import { Button } from "../ui";
 const StartGame: FC = () => {
     const { setIsGameReady } = useGameStore();
     const { setUserName, setDifficultyLevel, difficultyLevel } = useUserStore();
+    const { setDuckSound } = useSoundStore();
 
     const [name, setName] = useState<string>('');
 
@@ -37,6 +38,7 @@ const StartGame: FC = () => {
         setUserName(name);
         setDifficultyLevel(difficultyLevel);
         setIsGameReady();
+        setDuckSound(true);
 
         getFullScreen().catch(error => console.error(error));
     };
