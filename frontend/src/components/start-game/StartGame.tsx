@@ -1,5 +1,4 @@
-// Core
-import { type FC, useState,type FormEvent } from 'react';
+import { type FC, useState, type FormEvent, useEffect, useRef } from 'react';
 // Styles
 import styles from './styles.module.css';
 // Store
@@ -8,11 +7,17 @@ import { useGameStore, useUserStore } from "../../store";
 import { Button } from "../ui";
 
 const StartGame: FC = () => {
-    const { setIsGameReady} = useGameStore();
+    const { setIsGameReady } = useGameStore();
     const { setUserName, setDifficultyLevel, difficultyLevel } = useUserStore();
     const [name, setName] = useState('');
 
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
     const levelOfDifficult: Array<'Easy' | 'Medium' | 'Hard'> = ['Easy', 'Medium', 'Hard'];
+
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, []);
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -32,6 +37,7 @@ const StartGame: FC = () => {
             <div className={styles['user-block']}>
                 <p className={styles['user-title']}>User Name:</p>
                 <input
+                    ref={inputRef}
                     className={styles['input']}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -42,17 +48,12 @@ const StartGame: FC = () => {
                 />
             </div>
 
-            <div className={styles['score-block']}>
-                <p>Score:</p>
-                <p className={styles['score']}>0</p>
-            </div>
-
             <div className={styles['button-container']}>
                 {
                     levelOfDifficult.map((level) => (
                         <Button
                             type='button'
-                            style={{background: '#38a8f2'}}
+                            style={{ background: '#38a8f2' }}
                             key={level}
                             onClick={() => setDifficultyLevel(level)}
                         >
@@ -63,7 +64,7 @@ const StartGame: FC = () => {
             </div>
 
             <div className={styles['start-button']}>
-                <Button style={{background: '#71b800'}} type="submit">Start Game</Button>
+                <Button style={{ background: '#71b800' }} type="submit">Start Game</Button>
             </div>
         </form>
     );

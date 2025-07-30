@@ -20,14 +20,14 @@ export const getSettingsByDifficulty = (
             return {
                 type: 'Easy',
                 interval: 1000,
-                stiffness: 50,
+                stiffness: 30,
                 damping: 12,
             };
         case 'Medium':
             return {
                 type: 'Medium',
                 interval: 800,
-                stiffness: 60,
+                stiffness: 40,
                 damping: 10,
             };
         case 'Hard':
@@ -35,7 +35,7 @@ export const getSettingsByDifficulty = (
             return {
                 type: 'Hard',
                 interval: 500,
-                stiffness: 80,
+                stiffness: 50,
                 damping: 8,
             };
     }
