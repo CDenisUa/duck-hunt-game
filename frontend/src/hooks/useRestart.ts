@@ -3,9 +3,8 @@ import {useEffect} from "react";
 // Store
 import {useGameStore, useUserStore} from "../store";
 
-const DEFAULT_SPLASH_DURATION = 3000;
-
 export const useRestart = () => {
+    const DEFAULT_SPLASH_DURATION = Number(import.meta.env.VITE_DEFAULT_SPLASH_DURATION) || 3000;
     const { setRound, round, isHit, setIsHit } = useGameStore();
     const { setScore, score } = useUserStore();
 
