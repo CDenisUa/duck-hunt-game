@@ -9,7 +9,7 @@ const WebSocket: FC = () => {
 
     useEffect(() => {
         socket.on('connect', () => {
-            console.log('🔌 Socket connected:', socket.id);
+            console.log('Socket connected:', socket.id);
             socket.emit('message', `Client connected [${socket.id}]`);
         });
 
