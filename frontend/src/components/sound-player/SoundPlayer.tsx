@@ -31,7 +31,7 @@ const AudioPlayer = forwardRef<AudioPlayerHandle, AudioPlayerProps>(
             if (!audio) return;
 
             if (audio.src !== src) {
-                setCanPlay(false); // reset readiness
+                setCanPlay(false);
                 audio.src = src;
             }
 
