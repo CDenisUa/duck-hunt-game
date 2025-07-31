@@ -46,20 +46,20 @@ const SniperScope: FC = () => {
             />
 
             {
-                isHit && hitPosition && (
-                <svg
-                    style={{
-                        position: 'absolute',
-                        left: hitPosition.x - 48,
-                        top: hitPosition.y - 32,
-                        width: 64,
-                        height: 64,
-                        overflow: 'visible',
-                        pointerEvents: 'none',
-                    }}
-                >
-                    <DuckSplash isHit={true} />
-                </svg>)
+                isHit && hitPosition &&
+                    <svg
+                        style={{
+                            position: 'absolute',
+                            left: hitPosition.x - 48,
+                            top: hitPosition.y - 32,
+                            width: 64,
+                            height: 64,
+                            overflow: 'visible',
+                            pointerEvents: 'none',
+                        }}
+                    >
+                        <DuckSplash isHit={true} />
+                    </svg>
             }
         </>
     );

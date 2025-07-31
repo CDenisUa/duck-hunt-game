@@ -44,12 +44,12 @@ export const withChaoticFlight = (WrappedComponent: ComponentType<DuckPropTypes>
                     pointerEvents: "auto",
                 }}
                 initial={{
-                    top: prevPosition.top,
-                    left: prevPosition.left,
+                    top: prevPosition?.top,
+                    left: prevPosition?.left,
                 }}
                 animate={{
                     top: position?.top,
-                    left: position.left,
+                    left: position?.left,
                 }}
                 transition={{
                     type: "spring",

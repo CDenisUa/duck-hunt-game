@@ -6,14 +6,15 @@ import type {DuckPropTypes} from "./Duck.types.ts";
 
 const Duck: FC<DuckPropTypes> = (props) => {
     const {
-        isHit,
+        isHit = false,
         setIsHit
     } = props;
-
     const [fly, setFly] = useState(false);
+    const wingsUpOpacity = !isHit ? (fly ? 1 : 0) : 0;
+    const wingsDownOpacity = !isHit ? (!fly ? 1 : 0) : 0;
 
     useEffect(() => {
-        if(isHit) return
+        if (isHit) return;
 
         const interval = setInterval(() => {
             setFly(prev => !prev);
@@ -36,7 +37,8 @@ const Duck: FC<DuckPropTypes> = (props) => {
                 {/*Wings Down*/}
                 <motion.g
                     id="wings-down"
-                    animate={{ opacity: isHit ? 0 : fly ? 0 : 1 }}
+                    initial={false}
+                    animate={{ opacity: wingsDownOpacity }}
                     transition={{ duration: 0.1 }}
                     transform="translate(10, 12)"
                 >
@@ -109,7 +111,8 @@ const Duck: FC<DuckPropTypes> = (props) => {
                 {/*Wings Up*/}
                 <motion.g
                     id="wings-up"
-                    animate={{ opacity: isHit ? 0 : fly ? 1 : 0 }}
+                    initial={false}
+                    animate={{ opacity: wingsUpOpacity }}
                     transition={{ duration: 0.1 }}
                     transform="translate(-72, 0)"
                 >
@@ -171,6 +174,7 @@ const Duck: FC<DuckPropTypes> = (props) => {
                     <path fill="#2C333A" d="M153.105 21.333h2.684v5.108h-2.684z"/>
                     <path d="M171 5h85v53.2h-85z"/>
                 </motion.g>
+
             </g>
         </motion.svg>
     );
