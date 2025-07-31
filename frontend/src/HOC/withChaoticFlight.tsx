@@ -56,6 +56,7 @@ export const withChaoticFlight = (WrappedComponent: ComponentType<DuckPropTypes>
                     stiffness,
                     damping,
                 }}
+                exit={{ opacity: 0 }}
             >
                 <WrappedComponent {...props} />
             </motion.div>

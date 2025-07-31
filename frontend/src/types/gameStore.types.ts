@@ -4,6 +4,8 @@ export interface GameState {
     hitPosition: { x: number; y: number } | null,
     round: number;
     isDuckSound: boolean;
+    serverMessage: string;
+    setServerMessage: (message: string) => void;
     setIsGameReady: () => void;
     setIsHit: (value: boolean) => void;
     setRound: (value: number) => void;

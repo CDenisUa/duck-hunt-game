@@ -10,6 +10,7 @@ const DuckSplash = ({ isHit }: HitDuckProps) => {
             animate={{ opacity: isHit ? 1 : 0 }}
             transition={{ duration: 0.1 }}
             transform="translate(-162, 0)"
+            exit={{opacity: 0}}
         >
             <path fill="#C9CBCD" d="M211.714 18.918h3.81v-.365.365h3.81v1.457h6.856v6.56h5.334v7.287h-5.334v7.288h-6.857v2.915h-11.428V41.51h-7.619v-8.017h4.571v-6.559h-4.571V23.29h4.571v-2.915h3.81v-3.643h3.047v2.186Zm3.81-2.186v1.821ZM238.38 44.425h-14.475v3.644h14.476z" />
             <path fill="#C9CBCD" d="M234.571 40.781h-4.57v4.373h4.57zM238.38 50.984h-4.57v4.373h4.57zM227.714 52.627h-4.57V57h4.57z" />

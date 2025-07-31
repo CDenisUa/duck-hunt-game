@@ -1,11 +1,19 @@
 // Core
-import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
-import type {AudioPlayerHandle, AudioPlayerProps} from "./SoundPlayer.types.ts";
+import {
+    useEffect,
+    useRef,
+    forwardRef,
+    useImperativeHandle,
+    useState,
+} from "react";
+// Types
+import type { AudioPlayerHandle, AudioPlayerProps } from "./SoundPlayer.types.ts";
 
 const AudioPlayer = forwardRef<AudioPlayerHandle, AudioPlayerProps>(
     (props, ref) => {
         const { src, playing, ...rest } = props;
         const audioRef = useRef<HTMLAudioElement>(null);
+        const [canPlay, setCanPlay] = useState(false);
 
         useImperativeHandle(ref, () => ({
             play: () => audioRef.current?.play() ?? Promise.resolve(),
@@ -19,27 +27,35 @@ const AudioPlayer = forwardRef<AudioPlayerHandle, AudioPlayerProps>(
         }));
 
         useEffect(() => {
-            if (audioRef.current && audioRef.current.src !== src) {
-                audioRef.current.src = src;
-                if (playing) {
-                    audioRef.current
-                        .play()
-                        .catch((err) => console.error("Audio play error:", err));
-                }
+            const audio = audioRef.current;
+            if (!audio) return;
+
+            if (audio.src !== src) {
+                setCanPlay(false); // reset readiness
+                audio.src = src;
             }
-        }, [src, playing]);
+
+            const handleCanPlay = () => setCanPlay(true);
+            audio.addEventListener("canplaythrough", handleCanPlay);
+
+            return () => {
+                audio.removeEventListener("canplaythrough", handleCanPlay);
+            };
+        }, [src]);
 
         useEffect(() => {
             const audio = audioRef.current;
             if (!audio) return;
 
-            if (playing) {
-                audio.play().catch((err) => console.error("Audio play error:", err));
-            } else {
+            if (playing && canPlay) {
+                audio
+                    .play()
+                    .catch((err) => console.error("Audio play error:", err));
+            } else if (!playing) {
                 audio.pause();
                 audio.currentTime = 0;
             }
-        }, [playing]);
+        }, [playing, canPlay]);
 
         useEffect(() => {
             const audio = audioRef.current;
